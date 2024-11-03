@@ -6,10 +6,18 @@ import config from '../../config'
 
 const userSchema = new Schema<TUser, UserModel>(
   {
+    name: {
+      type: String,
+      required: true,
+    },
     email: {
       type: String,
       required: true,
       unique: true,
+    },
+    contactNo: {
+      type: String,
+      required: true,
     },
     password: {
       type: String,
@@ -25,6 +33,7 @@ const userSchema = new Schema<TUser, UserModel>(
       enum: UserStatus,
       default: 'in-progress',
     },
+    profileImg: { type: String, default: '' },
     isDeleted: {
       type: Boolean,
       default: false,

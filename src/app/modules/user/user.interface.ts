@@ -2,10 +2,13 @@ import { Model } from 'mongoose'
 import { USER_ROLE } from '../user/user.constant'
 
 export interface TUser {
+  name: string
   email: string
+  contactNo: string
   password: string
   role: 'superAdmin' | 'admin' | 'user'
   status: 'in-progress' | 'blocked'
+  profileImg?: string
   isDeleted: boolean
 }
 
