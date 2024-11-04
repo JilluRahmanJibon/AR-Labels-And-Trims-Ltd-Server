@@ -6,6 +6,8 @@ export interface TUser {
   email: string
   contactNo: string
   password: string
+  needsPasswordChange: boolean
+  passwordChangedAt?: Date
   role: 'superAdmin' | 'admin' | 'user'
   status: 'in-progress' | 'blocked'
   profileImg?: string
@@ -20,6 +22,10 @@ export interface UserModel extends Model<TUser> {
     plainTextPassword: string,
     hashedPassword: string,
   ): Promise<boolean>
+  isJWTIssuedBeforePasswordChanged(
+    passwordChangedTimestamp: Date,
+    jwtIssuedTimestamp: number,
+  ): boolean
 }
 
 export type TUserRole = keyof typeof USER_ROLE
