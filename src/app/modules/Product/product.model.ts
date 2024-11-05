@@ -3,7 +3,7 @@ import { TPreRequisiteImages, TProduct } from './product.interface'
 
 const preRequisiteImageSchema = new Schema<TPreRequisiteImages>(
   {
-    image: {
+    img: {
       type: String,
     },
   },
@@ -21,11 +21,11 @@ const productSchema = new Schema<TProduct>({
   },
   description: {
     type: String,
-    unique: true,
+    unique: true,   
     trim: true,
     required: true,
   },
-  preRequisiteImages: [preRequisiteImageSchema],
+  image: [preRequisiteImageSchema],
 })
 
 export const Product = model<TProduct>('Product', productSchema)

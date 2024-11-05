@@ -1,5 +1,4 @@
 import { Router } from 'express'
-import validateRequest from '../../middlewares/validateRequest'
 import auth from '../../middlewares/auth'
 import { ProductControllers } from './product.controller'
 
@@ -11,9 +10,7 @@ router.post(
   ProductControllers.createProduct,
 )
 router.delete('/:id', auth('superAdmin'), ProductControllers.deleteProduct)
-router.get('/:id', auth('superAdmin'), ProductControllers.getSingleProduct)
-router.post('/', ProductControllers.getAllProducts)
+router.get('/:id',  ProductControllers.getSingleProduct)
+router.get('/', ProductControllers.getAllProducts)
 
-
-
-export const ProductRoutes=router
+export const ProductRoutes = router

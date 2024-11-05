@@ -1,9 +1,6 @@
-import catchAsync from "../../utils/catchAsync"
-import sendResponse from "../../utils/sendResponse"
-import { ProductServices } from "./product.service"
-
-
-
+import catchAsync from '../../utils/catchAsync'
+import sendResponse from '../../utils/sendResponse'
+import { ProductServices } from './product.service'
 
 const createProduct = catchAsync(async (req, res) => {
   const result = await ProductServices.createProductIntoDB(req.body)
@@ -26,8 +23,18 @@ const getAllProducts = catchAsync(async (req, res) => {
     data: result,
   })
 })
+const getProductsCategory = catchAsync(async (req, res) => {
+  const result = await ProductServices.getProductsCategoryFromDB()
 
-const getSingleProduct= catchAsync(async (req, res) => {
+  sendResponse(res, {
+    statusCode: 200,
+    success: true,
+    message: 'Product Category are retrieved successfully',
+    data: result,
+  })
+})
+
+const getSingleProduct = catchAsync(async (req, res) => {
   const { id } = req.params
   const result = await ProductServices.getSingleProductFromDB(id)
 
@@ -39,9 +46,7 @@ const getSingleProduct= catchAsync(async (req, res) => {
   })
 })
 
-
-
-const deleteProduct= catchAsync(async (req, res) => {
+const deleteProduct = catchAsync(async (req, res) => {
   const { id } = req.params
   const result = await ProductServices.deleteProductFromDB(id)
 
@@ -54,5 +59,9 @@ const deleteProduct= catchAsync(async (req, res) => {
 })
 
 export const ProductControllers = {
-    createProduct,getAllProducts,getSingleProduct,deleteProduct
+  createProduct,
+  getAllProducts,
+  getProductsCategory,
+  getSingleProduct,
+  deleteProduct,
 }
