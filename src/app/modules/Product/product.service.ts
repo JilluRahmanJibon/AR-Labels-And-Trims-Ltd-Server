@@ -11,8 +11,14 @@ const getAllProductsFromDB = async () => {
   return result
 }
 const getProductsCategoryFromDB = async () => {
-  const result = await Product.find()
-  return result
+  
+    try {
+    const result = await Product.find({})
+      return result
+    } catch (error) {
+      console.error('Error fetching product categories:', error)
+      throw error // This will propagate the error to `catchAsync`
+    }
 }
 
 const getSingleProductFromDB = async (id: string) => {

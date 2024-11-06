@@ -10,7 +10,9 @@ router.post(
   ProductControllers.createProduct,
 )
 router.delete('/:id', auth('superAdmin'), ProductControllers.deleteProduct)
-router.get('/:id',  ProductControllers.getSingleProduct)
+router.get('/:id', ProductControllers.getSingleProduct)
 router.get('/', ProductControllers.getAllProducts)
+
+// router.get('/:title', ProductControllers.getProductsCategory)
 
 export const ProductRoutes = router

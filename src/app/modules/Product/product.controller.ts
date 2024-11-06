@@ -1,3 +1,4 @@
+import { NextFunction } from 'express'
 import catchAsync from '../../utils/catchAsync'
 import sendResponse from '../../utils/sendResponse'
 import { ProductServices } from './product.service'
@@ -23,6 +24,7 @@ const getAllProducts = catchAsync(async (req, res) => {
     data: result,
   })
 })
+
 const getProductsCategory = catchAsync(async (req, res) => {
   const result = await ProductServices.getProductsCategoryFromDB()
 
@@ -34,8 +36,10 @@ const getProductsCategory = catchAsync(async (req, res) => {
   })
 })
 
+ 
 const getSingleProduct = catchAsync(async (req, res) => {
   const { id } = req.params
+  console.log(id)
   const result = await ProductServices.getSingleProductFromDB(id)
 
   sendResponse(res, {
