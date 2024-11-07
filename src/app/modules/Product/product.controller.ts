@@ -13,6 +13,7 @@ const createProduct = catchAsync(async (req, res) => {
   })
 })
 
+
 const getAllProducts = catchAsync(async (req, res) => {
   const result = await ProductServices.getAllProductsFromDB()
 
@@ -26,7 +27,7 @@ const getAllProducts = catchAsync(async (req, res) => {
 
 const getSingleProduct = catchAsync(async (req, res) => {
   const { id } = req.params
-  console.log(id)
+ 
   const result = await ProductServices.getSingleProductFromDB(id)
 
   sendResponse(res, {

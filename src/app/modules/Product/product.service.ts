@@ -17,7 +17,9 @@ const createProductIntoDB = async (files: any, payload: TProduct) => {
       const result = await Product.create(payload)
       return result
     }
-  } catch {}
+  } catch (err) {
+    console.log('what is the problem',err)
+  }
 }
 
 const getAllProductsFromDB = async () => {
