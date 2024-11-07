@@ -1,4 +1,4 @@
-/* eslint-disable @typescript-eslint/no-explicit-any */
+ 
 import { v2 as cloudinary } from 'cloudinary'
 import fs from 'fs'
 import multer from 'multer'
@@ -63,5 +63,5 @@ const storage = multer.diskStorage({
 })
 
 // Multer upload configuration for single and multiple images
-export const uploadSingle = multer({ storage }).single('image')
-export const uploadMultiple = multer({ storage }).array('images', 10)
+export const uploadSingle = multer({ storage })
+export const uploadMultiple = multer({ storage })

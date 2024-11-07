@@ -1,24 +1,28 @@
+import {
+  sendImageToCloudinary,
+  sendMultipleImagesToCloudinary,
+} from '../../utils/sendImageToCloudinary'
 import { TProduct } from './product.interface'
 import { Product } from './product.model'
 
-const createProductIntoDB = async (payload: TProduct) => {
-  const result = await Product.create(payload)
-  return result
+const createProductIntoDB = async (files: any, payload: TProduct) => {
+  const images = files.map((file: Express.Multer.File) => ({
+    name: file.filename,
+    path: file.path,
+  }))
+  try {
+    if (images) {
+      const res = await sendMultipleImagesToCloudinary(images)
+      payload.image = res.map((image) => ({ img: image.secure_url }))
+      const result = await Product.create(payload)
+      return result
+    }
+  } catch {}
 }
 
 const getAllProductsFromDB = async () => {
   const result = await Product.find()
   return result
-}
-const getProductsCategoryFromDB = async () => {
-  
-    try {
-    const result = await Product.find({})
-      return result
-    } catch (error) {
-      console.error('Error fetching product categories:', error)
-      throw error // This will propagate the error to `catchAsync`
-    }
 }
 
 const getSingleProductFromDB = async (id: string) => {
@@ -33,7 +37,6 @@ const deleteProductFromDB = async (id: string) => {
 
 export const ProductServices = {
   createProductIntoDB,
-  getProductsCategoryFromDB,
   getAllProductsFromDB,
   getSingleProductFromDB,
   deleteProductFromDB,

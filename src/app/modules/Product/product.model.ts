@@ -1,17 +1,7 @@
 import { model, Schema } from 'mongoose'
-import { TPreRequisiteImages, TProduct } from './product.interface'
+import {  TProduct } from './product.interface'
 
-const preRequisiteImageSchema = new Schema<TPreRequisiteImages>(
-  {
-    img: {
-      type: String,
-    },
-  },
-  {
-    _id: false,
-  },
-)
-
+ 
 const productSchema = new Schema<TProduct>({
   title: {
     type: String,
@@ -25,7 +15,7 @@ const productSchema = new Schema<TProduct>({
     trim: true,
     required: true,
   },
-  image: [preRequisiteImageSchema],
+  image: [],
 })
 
 export const Product = model<TProduct>('Product', productSchema)
