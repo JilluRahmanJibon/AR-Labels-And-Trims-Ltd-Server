@@ -5,8 +5,9 @@ import { TLoginUser } from './auth.interface'
 import { createToken } from './auth.utils'
 
 const loginUser = async (payload: TLoginUser) => {
+
   // checking if the user is exist
-  const user = await User.isUserExistsByEmail(payload.email)
+  const user = await User.isUserExistsByEmail(payload.email) 
 
   if (!user) {
     throw new AppError(404, 'This user is not found !')

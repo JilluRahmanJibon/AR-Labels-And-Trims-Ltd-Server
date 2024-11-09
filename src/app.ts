@@ -13,8 +13,8 @@ app.use(express.json())
 
 app.use(
   cors({
-    origin: 'http://localhost:3000',
-    // origin: 'https://ar-labels-and-trims-ltd.vercel.app/',
+    // origin: 'http://localhost:3000',
+    origin: 'https://ar-labels-and-trims-ltd.vercel.app',
     credentials: true,
   }),
 )
@@ -26,7 +26,7 @@ app.use('/api/v1', router)
 
 // global error handler 
 app.use(globalErrorHandler)
-
+  
 
 // API NOT FOUND 
 app.use(notFound) 
