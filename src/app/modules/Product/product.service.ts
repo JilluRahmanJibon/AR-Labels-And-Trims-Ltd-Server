@@ -1,25 +1,9 @@
-import {
-  sendImageToCloudinary,
-  sendMultipleImagesToCloudinary,
-} from '../../utils/sendImageToCloudinary'
 import { TProduct } from './product.interface'
 import { Product } from './product.model'
 
-const createProductIntoDB = async (files: any, payload: TProduct) => {
-  const images = files.map((file: Express.Multer.File) => ({
-    name: file.filename,
-    path: file.path,
-  }))
-  try {
-    if (images) {
-      const res = await sendMultipleImagesToCloudinary(images)
-      payload.image = res.map((image) => ({ img: image.secure_url }))
-      const result = await Product.create(payload)
-      return result
-    }
-  } catch (err) {
-    console.log('what is the problem',err)
-  }
+const createProductIntoDB = async (  payload: TProduct) => {
+ const result  = await Product.create(payload)
+ return result
 }
 
 const getAllProductsFromDB = async () => {

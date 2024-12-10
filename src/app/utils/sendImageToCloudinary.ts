@@ -1,25 +1,7 @@
- 
-import { v2 as cloudinary } from 'cloudinary'
 import fs from 'fs'
 import multer from 'multer'
-import config from '../config'
 
-cloudinary.config({
-  cloud_name: config.cloudinary_cloud_name,
-  api_key: config.cloudinary_api_key,
-  api_secret: config.cloudinary_api_secret,
-})
-
-interface UploadApiResponse {
-  public_id: string
-  url: string
-  [key: string]: any
-}
-
-export const sendImageToCloudinary = (
-  imageName: string,
-  path: string,
-): Promise<UploadApiResponse> => {
+export const sendImageToCloudinary = (imageName: string, path: string) => {
   return new Promise((resolve, reject) => {
     cloudinary.uploader
       .upload(path, { public_id: imageName.trim() }, (error, result) => {
@@ -27,7 +9,7 @@ export const sendImageToCloudinary = (
           reject(error)
         }
         if (result) {
-          resolve(result as UploadApiResponse)
+          resolve(result)
         }
       })
       .finally(() => {
@@ -46,7 +28,7 @@ export const sendImageToCloudinary = (
 // Function to handle multiple image uploads
 export const sendMultipleImagesToCloudinary = (
   images: { name: string; path: string }[],
-): Promise<UploadApiResponse[]> => {
+) => {
   return Promise.all(
     images.map((image) => sendImageToCloudinary(image.name, image.path)),
   )
