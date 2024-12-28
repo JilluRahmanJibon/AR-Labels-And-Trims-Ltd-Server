@@ -1,7 +1,6 @@
 import { model, Schema } from 'mongoose'
-import {  TProduct } from './product.interface'
+import { TProduct } from './product.interface'
 
- 
 const productSchema = new Schema<TProduct>({
   title: {
     type: String,
@@ -11,8 +10,6 @@ const productSchema = new Schema<TProduct>({
   },
   description: {
     type: String,
-    unique: true,   
-    trim: true,
     required: true,
   },
   image: [],

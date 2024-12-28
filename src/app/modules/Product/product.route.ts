@@ -8,6 +8,7 @@ const router = Router()
 router.post(
   '/create-product',
   auth('superAdmin'),
+  upload.array('files'),
   (req: Request, res: Response, next: NextFunction) => {
     req.body = JSON.parse(req.body.data)
     next()
