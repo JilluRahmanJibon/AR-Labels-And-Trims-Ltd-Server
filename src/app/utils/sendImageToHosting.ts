@@ -45,7 +45,7 @@ export const saveImagesToHosting = async (
       fs.writeFileSync(savePath, file.buffer)
 
       // Construct the full URL of the saved file
-      const fullUrl = `https://www.arltl.com/web-cms-arltl/uploads/${fileName}`
+      const fullUrl = `https://arltl.com/web-cms-arltl/uploads/${fileName}`
 
       // Add the file details to the array
       fileDetails.push({ img: fullUrl, fileName })

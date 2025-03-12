@@ -3,6 +3,7 @@ import { UserRoutes } from '../modules/user/user.route'
 import { AuthRoutes } from '../modules/Auth/auth.route'
 import { ProductRoutes } from '../modules/Product/product.route'
 import { CategoryRoutes } from '../modules/Category/category.route'
+import { BannerRoutes } from '../modules/Banner/banner.route'
 
 const router = Router()
 
@@ -22,6 +23,10 @@ const moduleRoutes = [
   {
     path: '/categories',
     route :CategoryRoutes
+  },
+  {
+    path: '/banner',
+    route :BannerRoutes
   }
 ]
 
